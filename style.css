@@ -11,7 +11,8 @@ body {
 .content,
 .footer,
 .score,
-.choice {
+.choice,
+.alert {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,6 +43,13 @@ body {
     color: #44a0c2;
 }
 
+.alert {
+    color: #ffac16;
+    height: 100px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
 .result-panel {
     display: flex;
     gap: 20px;
@@ -50,7 +58,7 @@ body {
 #player, #computer {
     height: 180px;
     width: 150px;
-    border: 3px #ffac16 solid;
+    border: 2px #ffac16 solid;
 }
 
 .score {
@@ -68,6 +76,7 @@ body {
 .choice {
     height: 150px;
     font-size: 36px;
+    color: white;
 }
 
 .text {
@@ -78,7 +87,7 @@ button {
     margin: 40px 10px;
     padding: 10px;
     width: 80px;
-    border: 3px #ffac16 solid;
+    border: 2px #ffac16 solid;
     background-color: #122a33;
     color: white;
 }

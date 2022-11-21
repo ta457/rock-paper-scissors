@@ -63,3 +63,35 @@ function playRound(playerSelection, computerSelection){
 
 // game();
 
+console.clear();
+
+let btns = document.querySelectorAll('button');
+
+btns.forEach(function (i) {
+  i.addEventListener('click', function() {
+    const playerSelection = i.innerHTML;
+    const computerSelection = getComputerChoice();
+    document.querySelector('#player-choice').innerHTML = playerSelection;
+    document.querySelector('#comp-choice').innerHTML = textForm(computerSelection);
+    
+    const result = playRound(playerSelection, computerSelection);
+
+    let currentPlayerScore = document.querySelector('#player-score').innerHTML*1;
+    let currentCompScore = document.querySelector('#comp-score').innerHTML*1;
+    if(result == 1) {
+        currentCompScore++;
+        document.querySelector('#comp-score').innerHTML = currentCompScore;
+    } else if(result == 2){
+        currentPlayerScore++;
+        document.querySelector('#player-score').innerHTML = currentPlayerScore;
+    }
+
+    if(currentPlayerScore == 3) {
+        document.querySelector('.alert').innerHTML = "Player won!";
+    }
+    if(currentCompScore == 3) {
+        document.querySelector('.alert').innerHTML = "Computer won!";
+    }
+  });
+});
+

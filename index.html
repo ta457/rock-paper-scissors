@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Rock Paper Scissors</title>
 </head>
 <body>
     <div class="header">Rock Paper Scissors</div>
     <div class="content">
+        <div class="alert"></div>
         <div class="result-panel">
             <div id="player">
                 <div class="score">Player:<p id="player-score">0</p></div>
-                <div class="choice"></div>
+                <div class="choice" id="player-choice"></div>
             </div>
             <div id="computer">
                 <div class="score">Comp:<p id="comp-score">0</p></div>
-                <div class="choice"></div>
+                <div class="choice" id="comp-choice"></div>
             </div>
         </div>
         <div class="buttons">
