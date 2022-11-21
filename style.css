@@ -1,0 +1,88 @@
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.header,
+.content,
+.footer,
+.score,
+.choice {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    height: 10vh;
+    background-color: #ffac16;
+    font-size: 36px;
+    font-weight: lighter;
+}
+
+.content {
+    height: 85vh;
+    flex-direction: column;
+    background-color: #122a33;
+}
+
+.footer {
+    height: 5vh;
+    background-color: #122a33;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #44a0c2;
+}
+
+.result-panel {
+    display: flex;
+    gap: 20px;
+}
+
+#player, #computer {
+    height: 180px;
+    width: 150px;
+    border: 3px #ffac16 solid;
+}
+
+.score {
+    height: 30px;
+    width: 100%;
+    background-color: #ffac16;
+    font-weight: bold;
+    border: 1px #ffac16 solid;
+}
+
+.score p {
+    margin-left: 5px;
+}
+
+.choice {
+    height: 150px;
+    font-size: 36px;
+}
+
+.text {
+    color:#ffac16;
+}
+
+button {
+    margin: 40px 10px;
+    padding: 10px;
+    width: 80px;
+    border: 3px #ffac16 solid;
+    background-color: #122a33;
+    color: white;
+}
+
+button:hover {
+    cursor: pointer;
+}

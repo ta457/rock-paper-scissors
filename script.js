@@ -53,12 +53,13 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
-function game(){
-    for(let i = 0; i < 5; i++) {
-        const playerSelection = prompt("Your choice is:");
-        const computerSelection = getComputerChoice();
-        console.log(getMessage(playRound(playerSelection, computerSelection), playerSelection, computerSelection));
-    }
-}
+// function game(){
+//     for(let i = 0; i < 5; i++) {
+//         const playerSelection = prompt("Your choice is:");
+//         const computerSelection = getComputerChoice();
+//         console.log(getMessage(playRound(playerSelection, computerSelection), playerSelection, computerSelection));
+//     }
+// }
 
-game();
+// game();
+
