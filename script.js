@@ -1,4 +1,5 @@
-//1 = rock, 2 = paper, 3 = scissors
+// handling players choices and playround ========================
+
 function textForm(choice){
     if(choice == 1) {
         return "Rock";
@@ -10,17 +11,6 @@ function textForm(choice){
         return null;
     }
 }
-
-function getMessage(result, playerSelection, computerSelection){
-    if(result == 0) {
-        return "You're even.";
-    } else if(result == 1) {
-        return "You lose! " + textForm(computerSelection) + " beats " + playerSelection;
-    } else {
-        return "You win! " + playerSelection + " beats " + textForm(computerSelection);
-    }
-}
-
 function getComputerChoice(){
     return Math.floor(Math.random()*(3 - 1 + 1) + 1);
 }
@@ -53,19 +43,70 @@ function playRound(playerSelection, computerSelection){
     return result;
 }
 
-// function game(){
-//     for(let i = 0; i < 5; i++) {
-//         const playerSelection = prompt("Your choice is:");
-//         const computerSelection = getComputerChoice();
-//         console.log(getMessage(playRound(playerSelection, computerSelection), playerSelection, computerSelection));
-//     }
-// }
+//manipulating elements during the game =======================
 
-// game();
+//selecting elements & general functions
 
 console.clear();
 
-let btns = document.querySelectorAll('button');
+let btns = document.querySelectorAll('.btn');
+let retryBtn = document.querySelector('.retry-btn');
+
+let alert = document.querySelector('.alert');
+let playerScore = document.querySelector('#player-score');
+let compScore = document.querySelector('#comp-score');
+
+let checkboxes = document.querySelectorAll('label input');
+let bo3Checkbox = document.querySelector('#bo3Checkbox');
+let bo5Checkbox = document.querySelector('#bo5Checkbox');
+
+let winCondition = 3;
+
+function hideElements(elements){
+    elements.forEach(function(i){
+        i.classList.add("hide");
+    });
+}
+
+function showElements(elements){
+    elements.forEach(function(i){
+        i.classList.remove("hide");
+    });
+}
+
+function hide(element){
+    element.classList.add("hide");
+}
+
+function show(element){
+    element.classList.remove("hide");
+}
+
+//choosing gamemode
+
+checkboxes.forEach(function(i) {
+    i.addEventListener('click', function() {
+        if(bo5Checkbox.checked) {
+            if(bo3Checkbox.checked) {
+                bo3Checkbox.click();
+            }
+            winCondition = 3;
+        }
+        if(bo3Checkbox.checked) {
+            if(bo5Checkbox.checked) {
+                bo5Checkbox.click();
+            }
+            winCondition = 2;
+        }
+        hide(retryBtn);
+        showElements(btns);
+        alert.innerHTML = "";
+        playerScore.innerHTML = "0";
+        compScore.innerHTML = "0";
+    });
+});
+
+//handling buttons
 
 btns.forEach(function (i) {
   i.addEventListener('click', function() {
@@ -76,22 +117,33 @@ btns.forEach(function (i) {
     
     const result = playRound(playerSelection, computerSelection);
 
-    let currentPlayerScore = document.querySelector('#player-score').innerHTML*1;
-    let currentCompScore = document.querySelector('#comp-score').innerHTML*1;
+    let currentPlayerScore = playerScore.innerHTML*1;
+    let currentCompScore = compScore.innerHTML*1;
     if(result == 1) {
         currentCompScore++;
-        document.querySelector('#comp-score').innerHTML = currentCompScore;
+        compScore.innerHTML = currentCompScore;
     } else if(result == 2){
         currentPlayerScore++;
-        document.querySelector('#player-score').innerHTML = currentPlayerScore;
+        playerScore.innerHTML = currentPlayerScore;
     }
 
-    if(currentPlayerScore == 3) {
-        document.querySelector('.alert').innerHTML = "Player won!";
+    if(currentPlayerScore == winCondition) {
+        alert.innerHTML = "Player won!";
+        hideElements(btns);
+        show(retryBtn);
     }
-    if(currentCompScore == 3) {
-        document.querySelector('.alert').innerHTML = "Computer won!";
+    if(currentCompScore == winCondition) {
+        alert.innerHTML = "Computer won!";
+        hideElements(btns);
+        show(retryBtn);
     }
   });
 });
 
+retryBtn.addEventListener('click', function() {
+    hide(retryBtn);
+    showElements(btns);
+    alert.innerHTML = "";
+    playerScore.innerHTML = "0";
+    compScore.innerHTML = "0";
+});
