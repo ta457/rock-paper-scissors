@@ -55,6 +55,8 @@ let retryBtn = document.querySelector('.retry-btn');
 let alert = document.querySelector('.alert');
 let playerScore = document.querySelector('#player-score');
 let compScore = document.querySelector('#comp-score');
+let playerChoice = document.querySelector('#player-choice');
+let compChoice = document.querySelector('#comp-choice');
 
 let checkboxes = document.querySelectorAll('label input');
 let bo3Checkbox = document.querySelector('#bo3Checkbox');
@@ -82,6 +84,37 @@ function show(element){
     element.classList.remove("hide");
 }
 
+function createImg(choice) {
+    let path = "img/";
+    if(choice == "Rock"){
+        path = path + "rock.png";
+    }
+    if(choice == "Paper"){
+        path = path + "paper.png";
+    }
+    if(choice == "Scissors"){
+        path = path + "scissors.png";
+    }
+    const choiceImg = document.createElement('img');
+    choiceImg.setAttribute('src', path);
+    choiceImg.setAttribute('alt', "choice");
+    return choiceImg;
+}
+
+function reset(retryBtn, btns, alert, playerScore, compScore, playerChoice, compChoice){
+    hide(retryBtn);
+    showElements(btns);
+    alert.innerHTML = "";
+    playerScore.innerHTML = "0";
+    compScore.innerHTML = "0";
+    if (playerChoice.hasChildNodes()) {
+        playerChoice.removeChild(playerChoice.children[0]);
+    }
+    if (compChoice.hasChildNodes()) {
+        compChoice.removeChild(compChoice.children[0]);
+    }
+}
+
 //choosing gamemode
 
 checkboxes.forEach(function(i) {
@@ -98,11 +131,7 @@ checkboxes.forEach(function(i) {
             }
             winCondition = 2;
         }
-        hide(retryBtn);
-        showElements(btns);
-        alert.innerHTML = "";
-        playerScore.innerHTML = "0";
-        compScore.innerHTML = "0";
+        reset(retryBtn, btns, alert, playerScore, compScore, playerChoice, compChoice);
     });
 });
 
@@ -112,9 +141,16 @@ btns.forEach(function (i) {
   i.addEventListener('click', function() {
     const playerSelection = i.innerHTML;
     const computerSelection = getComputerChoice();
-    document.querySelector('#player-choice').innerHTML = playerSelection;
-    document.querySelector('#comp-choice').innerHTML = textForm(computerSelection);
-    
+
+    if (playerChoice.hasChildNodes()) {
+        playerChoice.removeChild(playerChoice.children[0]);
+    }
+    if (compChoice.hasChildNodes()) {
+        compChoice.removeChild(compChoice.children[0]);
+    }
+    playerChoice.appendChild(createImg(playerSelection));
+    compChoice.appendChild(createImg(textForm(computerSelection)));
+
     const result = playRound(playerSelection, computerSelection);
 
     let currentPlayerScore = playerScore.innerHTML*1;
@@ -141,9 +177,5 @@ btns.forEach(function (i) {
 });
 
 retryBtn.addEventListener('click', function() {
-    hide(retryBtn);
-    showElements(btns);
-    alert.innerHTML = "";
-    playerScore.innerHTML = "0";
-    compScore.innerHTML = "0";
+    reset(retryBtn, btns, alert, playerScore, compScore, playerChoice, compChoice);
 });

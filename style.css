@@ -82,6 +82,11 @@ body {
     color: white;
 }
 
+.choice img {
+    width: 80px;
+    height: 80px;
+}
+
 /* style the buttons ===================================*/
 
 button {
@@ -90,7 +95,7 @@ button {
     width: 80px;
     border: 2px #ffac16 solid;
     background-color: #122a33;
-    color: white;
+    color: #ffac16;
 }
 
 .hide {
@@ -116,11 +121,12 @@ button:hover {
     padding-left: 35px;
     margin-bottom: 12px;
     cursor: pointer;
-    font-size: 22px;
+    font-size: 16px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    padding-top: 5px;
   }
   
   /* Hide the browser's default checkbox */
@@ -178,4 +184,3 @@ button:hover {
     transform: rotate(45deg);
   }
 
-  
