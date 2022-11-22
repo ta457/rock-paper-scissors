@@ -37,11 +37,17 @@ body {
     height: 5vh;
     background-color: #122a33;
     font-style: italic;
-    font-size: 12px;
 }
 .footer a {
     text-decoration: none;
     color: #44a0c2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.footer img {
+    width: 20px;
 }
 
 /* style the result panel ===============================*/
@@ -68,6 +74,7 @@ body {
     height: 30px;
     width: 100%;
     background-color: #ffac16;
+    font-size: 16px;
     font-weight: bold;
     border: 1px #ffac16 solid;
 }
@@ -92,10 +99,11 @@ body {
 button {
     margin: 40px 10px;
     padding: 10px;
-    width: 80px;
+    width: 100px;
     border: 2px #ffac16 solid;
     background-color: #122a33;
     color: #ffac16;
+    font-size: 16px;
 }
 
 .hide {
